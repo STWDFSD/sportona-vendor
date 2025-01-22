@@ -1,0 +1,36 @@
+@import "./base.scss";
+@import "./layout.scss";
+
+body {
+  font-weight: 400;
+  font-family: "Nexa", sans-serif, "Open Sans";
+}
+
+body {
+  min-height: 100vh;
+  &,
+  .customScrollbar {
+    @include custom-scrollbar;
+  }
+}
+
+.text-primaryColor {
+  color: $textPrimary;
+}
+
+.overflow-initial {
+  overflow: initial;
+}
+
+.no-sroll {
+  overflow: hidden !important;
+}
+
+//swal modal design
+.swal2-modal {
+  border-radius: 15px;
+  .swal2-close {
+    width: 2em;
+    height: 2em;
+  }
+}

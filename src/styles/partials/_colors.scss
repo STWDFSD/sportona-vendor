@@ -1,0 +1,85 @@
+// Basic color codes. Do not use directly in components
+$red: #f10e0e;
+$white: #ffffff;
+$dark: black;
+$orange: #f58220;
+
+$orange-dull: $orange;
+
+$warning: #7b6103;
+$success: #019810;
+$danger-light: #f10e0e33;
+$warning-light: #f1b20e33;
+$success-light: #01981033;
+$dark-Yellow: #afca0b;
+
+$dark-full: #333333;
+$dark-full-1: #303030;
+
+$secondary-color: #37474f;
+$secondary-color-1: #f0f0f0;
+$secondary-color-2: #dbdbdb;
+$secondary-color-3: #90a4ae;
+$secondary-color-4: #546e7a;
+$secondary-color-5: #90a4ae;
+$secondary-color-6: #d9d9d9;
+$secondary-color-7: #f2f2f2;
+$secondary-color-8: #dddddd;
+$secondary-color-9: #f2f2f2;
+$secondary-color-10: #acacaccc;
+
+$dark-light-6: #eae2e2;
+$dark-light-7: #9f9f9f;
+$dark-light-9: #c3bdbd;
+$dark-light-10: #cccccc;
+$dark-light-11: #707070;
+$dark-light-12: #4f4f4f;
+$dark-light-13: #d2d2d2;
+$dark-light-16: #eceff1;
+$dark-light-17: #546e7a;
+
+$gray-light-1: #f8f8f8;
+
+// use these color codes, derived from the basic color codes in components
+$darkColor: $dark;
+$lightColor: $white;
+$lightGray: $secondary-color-1;
+$secondaryColor: $red;
+$primaryColor: $dark;
+
+// Text
+$textDark: $darkColor;
+$textLight: $lightColor;
+$textPrimary: $primaryColor;
+$textDarkGray: $secondary-color-2;
+
+// Background
+$backgroundDark: $darkColor;
+$backgroundLight: $lightColor;
+$backgroundLightGray: $lightGray;
+$backgroundGray: $secondary-color-5;
+$backgroundDarkGray: $secondary-color-2;
+$backgroundPrimary: $primaryColor;
+
+// Fill for Svgs
+$fillLight: $lightColor;
+$fillDark: $darkColor;
+$fillPrimary: $primaryColor;
+$fillSecondary: $secondaryColor;
+
+// Borders
+$borderDark: $darkColor;
+$borderPrimary: $primaryColor;
+$borderLight: $lightColor;
+$borderLighter: $secondary-color-4;
+
+$textColor: $darkColor;
+$border: $secondary-color;
+$lightBackgroundColor: $secondary-color-5;
+
+$twitter: #33ccff;
+$linkedin: #0077b5;
+$facebook: #3b5998;
+$whatsapp: green;
+$instagram: #d22f71;
+$youtube: red;

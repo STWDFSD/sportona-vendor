@@ -1,0 +1,28 @@
+:root {
+  --light: #f9f9f9;
+  --grey: #eee;
+  --dark: #342e37;
+  --primary-color: #3490dc;
+  --secondary-color: #ffed4a;
+  --danger-color: #e3342f;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+}
+
+[data-theme='dark'] {
+  --light: #0c0c1e;
+  --grey: #060714;
+  --dark: #fbfbfb;
+  --primary-color: #1d4ed8;
+  --secondary-color: #fbbf24;
+  --danger-color: #b91c1c;
+  --background-color: #1f2937;
+  --text-color: #f9fafb;
+}

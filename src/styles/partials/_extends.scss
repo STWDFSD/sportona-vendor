@@ -1,0 +1,22 @@
+@import './_mixins';
+
+%absoluteCenter {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+%flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%boxSize {
+  @include box-sizing();
+}
+
+%normalizeStyle {
+  @include reset-defaults();
+}

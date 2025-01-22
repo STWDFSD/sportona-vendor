@@ -1,0 +1,86 @@
+@import "./_variables";
+
+@mixin font-template-text(
+  $fontSize: 18px,
+  $lineHeight: 1.7,
+  $letterSpacing: 0px
+) {
+  line-height: $lineHeight;
+  transition: color 0.2s linear;
+}
+
+@mixin box-sizing($boxSizing: border-box) {
+  -webkit-box-sizing: $boxSizing;
+  -moz-box-sizing: $boxSizing;
+  -ms-box-sizing: $boxSizing;
+  box-sizing: $boxSizing;
+}
+
+@mixin reset-defaults() {
+  border: 0;
+  padding: 0;
+  outline: none;
+  text-align: left;
+  background: none;
+  appearance: none;
+  color: $textDark;
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &:-moz-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+//Responsive Media Queries
+
+@mixin devices($breakpoint) {
+  // Desktop
+  @if $breakpoint == desktop {
+    @media only screen and (min-width: $desktop-small) and (max-width: $desktop-large) {
+      @content;
+    }
+  }
+
+  // Tablet
+  @if $breakpoint == tablet {
+    @media only screen and (min-width: $tablet-small) and (max-width: $tablet-large) {
+      @content;
+    }
+  }
+
+  // Mobile
+  @if $breakpoint == mobile {
+    @media only screen and (max-width: $mobile-large) {
+      @content;
+    }
+  }
+  // Mobile Small
+  @if $breakpoint == mobileSm {
+    @media only screen and (max-width: $mobile-small) {
+      @content;
+    }
+  }
+}
+
+@mixin custom-scrollbar {
+  overflow: hidden auto !important;
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $secondary-color-3;
+  }
+}

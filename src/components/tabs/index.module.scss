@@ -1,0 +1,11 @@
+.wrapper {
+  overflow-x: auto; /* Ensure the table has horizontal scrolling */
+
+  &::-webkit-scrollbar {
+    height: 4px; /* Specifically for horizontal scrollbar */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #bbbaba;
+  }
+}

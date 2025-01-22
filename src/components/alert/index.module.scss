@@ -1,0 +1,33 @@
+@import "styles/base/base";
+
+.alert {
+  padding: 15px;
+  border-radius: 20px;
+  position: fixed;
+  top: 100px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 99998;
+
+  span {
+    font-size: $font-xs;
+    font-weight: 700;
+    color: $white;
+    display: block;
+    margin: 0px 80px 0px 8px;
+  }
+  img {
+    cursor: pointer;
+  }
+}
+.default_alert {
+  background: #0bd716;
+}
+.error_alert {
+  background-color: #f54260;
+}
+.success_alert {
+  background-color: #0bd716;
+}
