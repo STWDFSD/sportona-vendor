@@ -324,11 +324,10 @@ const ChallengesRecieved = () => {
             <div
               key={challenge.id}
               onClick={() => setSelectedChallenge(challenge)}
-              className={`flex items-center p-3 mb-4 ${
-                selectedChallenge?.id === challenge?.id
-                  ? 'bg-[#EBEBEF]'
-                  : 'bg-white'
-              } rounded-[10px] cursor-pointer`}
+              className={`flex items-center p-3 mb-4 ${selectedChallenge?.id === challenge?.id
+                ? 'bg-[#EBEBEF]'
+                : 'bg-white'
+                } rounded-[10px] cursor-pointer`}
             >
               <img
                 src={challenge.avatar}
@@ -349,11 +348,10 @@ const ChallengesRecieved = () => {
             <div
               key={challenge.id}
               onClick={() => setSelectedChallenge(challenge)}
-              className={`flex items-center p-3 mb-4 ${
-                selectedChallenge?.id === challenge?.id
-                  ? 'bg-[#EBEBEF]'
-                  : 'bg-white'
-              } rounded-[10px] cursor-pointer`}
+              className={`flex items-center p-3 mb-4 ${selectedChallenge?.id === challenge?.id
+                ? 'bg-[#EBEBEF]'
+                : 'bg-white'
+                } rounded-[10px] cursor-pointer`}
             >
               <img
                 src={challenge.avatar}
@@ -458,73 +456,158 @@ const ChallengesRecieved = () => {
 export default ChallengesRecieved;
 
 const TeamParticipant = ({ title, subtitle }) => {
+  const [expandedCategory, setExpandedCategory] = useState('Legends');
+
+  const toggleCategory = (category) => {
+    if (expandedCategory === category) {
+      setExpandedCategory(null);
+    } else {
+      setExpandedCategory(category);
+    }
+  };
+
+  const categories = ['Legends', 'Champs', 'Pro', 'Rookies'];
+
+
   const users = [
     {
       id: 1,
       name: 'Alice',
       rating: 4.5,
       avatar: 'https://i.pravatar.cc/150?img=1',
+      category: 'Legends'
     },
     {
       id: 2,
       name: 'Bob',
       rating: 3.8,
       avatar: 'https://i.pravatar.cc/150?img=2',
+      category: 'Legends'
     },
     {
       id: 3,
       name: 'Charlie',
       rating: 4.9,
       avatar: 'https://i.pravatar.cc/150?img=3',
+      category: 'Legends'
     },
     {
       id: 4,
       name: 'David',
       rating: 4.2,
       avatar: 'https://i.pravatar.cc/150?img=4',
+      category: 'Legends'
     },
     {
       id: 5,
       name: 'Emma',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=5',
+      category: 'Legends'
+    },
+    {
+      id: 6,
+      name: 'David',
+      rating: 4.7,
+      avatar: 'https://i.pravatar.cc/150?img=2',
+      category: 'Champs'
+    },
+    {
+      id: 7,
+      name: 'Charlie',
+      rating: 4.7,
+      avatar: 'https://i.pravatar.cc/150?img=5',
+      category: 'Champs'
+    },
+    {
+      id: 8,
+      name: 'Emma',
+      rating: 4.7,
+      avatar: 'https://i.pravatar.cc/150?img=1',
+      category: 'Pro'
+    },
+    {
+      id: 9,
+      name: 'Charlie',
+      rating: 4.7,
+      avatar: 'https://i.pravatar.cc/150?img=2',
+      category: 'Pro'
+    },
+    {
+      id: 10,
+      name: 'David',
+      rating: 4.7,
+      avatar: 'https://i.pravatar.cc/150?img=3',
+      category: 'Pro'
+    },
+    {
+      id: 11,
+      name: 'Emma',
+      rating: 4.7,
+      avatar: 'https://i.pravatar.cc/150?img=2',
+      category: 'Rookies'
+    },
+    {
+      id: 12,
+      name: 'David',
+      rating: 4.7,
+      avatar: 'https://i.pravatar.cc/150?img=3',
+      category: 'Rookies'
+    },
+    {
+      id: 13,
+      name: 'Charlie',
+      rating: 4.7,
+      avatar: 'https://i.pravatar.cc/150?img=4',
+      category: 'Rookies'
     },
   ];
+
+
   return (
     <>
-      <SearchBar />
-      <div className='flex justify-between items-center px-3 bg-[#F7F7F8] py-1 my-3 rounded-[6px]'>
-        <span>Legends</span>
-        <SVG icon={downward} />
+      <div className="relative">
+        <SearchBar placeholder="Search participant..." />
       </div>
-      <div className='grid grid-cols-2 gap-4 p-4'>
-        {users.map(user => (
-          <div className='col-span-1   p-2 flex items-center space-x-4'>
-            <input
-              type='checkbox'
-              className='form-checkbox h-5 w-5 text-blue-600'
-            />
-            <img
-              src={user.avatar}
-              alt={user.name}
-              className='w-12 h-12 rounded-full'
-            />
-            <div>
-              <p className='font-semibold'>{user.name}</p>
-              <p className='text-sm text-gray-500'>Rating: {user.rating}</p>
+      <div className='flex flex-col space-y-2'>
+        {categories.map(category => (
+          <div key={category}>
+            <div
+              className='flex justify-between items-center px-4 py-3 bg-[#F7F7F8] rounded-lg cursor-pointer'
+              onClick={() => toggleCategory(category)}
+            >
+              <span className="font-medium">{category}</span>
+              <SVG
+                icon={expandedCategory === category ? downward : forward}
+                className="w-4 h-4"
+              />
             </div>
+            {expandedCategory === category && (
+              <div className='grid grid-cols-2 gap-4 mt-2'>
+                {users
+                  .filter(user => user.category === category)
+                  .map(user => (
+                    <div key={user.id} className='flex items-center space-x-3 p-2'>
+                      <input
+                        type='checkbox'
+                        className='form-checkbox h-5 w-5 rounded border-gray-300'
+                      />
+                      <img
+                        src={user.avatar}
+                        alt={user.name}
+                        className='w-10 h-10 rounded-full object-cover'
+                      />
+                      <div>
+                        <p className='font-medium text-sm'>{user.name}</p>
+                        <p className='text-gray-500 text-sm'>{user.rating.toLocaleString()}</p>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
-      {['Champs', 'Pro', 'Rookies'].map(x => (
-        <div
-          key={x}
-          className='flex justify-between items-center px-3 my-2 bg-[#F7F7F8] py-1 rounded-[6px]'
-        >
-          <span>{x}</span>
-          <SVG icon={forward} />
-        </div>
-      ))}
     </>
   );
 };
