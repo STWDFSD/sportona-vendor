@@ -66,9 +66,9 @@ export const SidebarRoutes = [
     icon: <SVG icon={challenges} className='' />,
     name: 'Challenges',
   },
-  // {
-  //   path: '/rankings',
-  //   icon: <SVG icon={ranking} className='' />,
-  //   name: 'Rankings',
-  // },
+  {
+    path: '/rankings',
+    icon: <SVG icon={ranking} className='' />,
+    name: 'Rankings',
+  },
 ];

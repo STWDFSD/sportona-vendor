@@ -120,22 +120,22 @@ const Services = () => {
 
           const servicesWithIcons = fetchedServices?.length
             ? fetchedServices.map(service => {
-                const matchedTabData = tabsData?.find(tab => {
-                  const normalizedTabTitle = tab.title
-                    .toLowerCase()
-                    .replace(/\s+/g, '');
-                  const normalizedServiceName = service.name
-                    .toLowerCase()
-                    .replace(/\s+/g, '');
+              const matchedTabData = tabsData?.find(tab => {
+                const normalizedTabTitle = tab.title
+                  .toLowerCase()
+                  .replace(/\s+/g, '');
+                const normalizedServiceName = service.name
+                  .toLowerCase()
+                  .replace(/\s+/g, '');
 
-                  return normalizedTabTitle === normalizedServiceName;
-                });
+                return normalizedTabTitle === normalizedServiceName;
+              });
 
-                return {
-                  ...service,
-                  icon: matchedTabData?.icon,
-                };
-              })
+              return {
+                ...service,
+                icon: matchedTabData?.icon,
+              };
+            })
             : [];
           setServices(servicesWithIcons);
         }
