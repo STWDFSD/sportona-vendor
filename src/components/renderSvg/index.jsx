@@ -1,12 +1,11 @@
 import React from 'react';
-import { ReactSVG } from 'react-svg';
-import styles from './index.module.scss';
 
-const SVG = ({ icon, className = '', fullSize = false, onClick }) => {
+const SVG = ({ icon, className = '', onClick }) => {
   return (
-    <ReactSVG
+    <img
       src={icon}
-      className={`${className} ${fullSize ? styles.svgWrapper : ''}`}
+      alt="icon"
+      className={className}
       onClick={onClick}
     />
   );

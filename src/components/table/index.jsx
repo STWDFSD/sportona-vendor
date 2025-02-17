@@ -9,41 +9,60 @@ import prev from 'media/svgs/prev.svg';
 import emailIcon from 'media/svgs/email.svg';
 //@import styles
 import styles from './index.module.scss';
-import Button from 'components/button';
+import Button from '../button';
 
 const ActionCell = (row, col, onClick) => {
   const { type = '' } = col;
+  const isEmailSent = row.action === 'Email Sent';
 
-  return (
-    <div className='flex space-x-[21px]'>
-      {type === 'subscription' && (
-        <Button
-          variant='outline'
-          title='Email Remainder'
-          onClick={() => onClick(row, col)}
-          icon={<SVG icon={emailIcon} />}
-        />
-      )}
-      {/* {showDelete ? (
-        <div
-          className='flex cursor-pointer items-center gap-2'
-          onClick={() => onDelete(row.id)}
-        >
-          <SVG icon={deleteIcon} className='h-[20px] w-[18px]' />
-          <span>Delete</span>
+  if (type === 'subscription') {
+    if (isEmailSent) {
+      return (
+        <div className="inline-flex items-center gap-1 px-3 py-1.5 text-gray-400 bg-gray-50 rounded-md">
+          <svg
+            className="w-3.5 h-3.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          <span className="text-sm font-normal">Email Sent</span>
         </div>
-      ) : null}
-      {showEdit ? (
-        <div
-          className='flex cursor-pointer items-center gap-2'
-          onClick={() => onEdit(row)}
-        >
-          <SVG icon={editIcon} />
-          <span>Edit</span>
-        </div>
-      ) : null} */}
-    </div>
-  );
+      );
+    }
+
+    return (
+      <Button
+        variant="outline"
+        title="Email Reminder"
+        onClick={() => onClick(row)}
+        icon={
+          <svg
+            className="w-4 h-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 0l-8 6-8-6"
+            />
+          </svg>
+        }
+        className="!px-3 !py-1.5 !gap-1"
+      />
+    );
+  }
+
+  return null;
 };
 
 const Table = ({
@@ -58,7 +77,7 @@ const Table = ({
   search = true,
   textCenter = true,
   isPagination = true,
-  handleRowClick,
+  handleRowClick = () => { },
 }) => {
   const currentPage = (query?.pageNumber || 0) + 1;
 
@@ -175,17 +194,14 @@ const Table = ({
               data?.map((row, rowIndex) => (
                 <tr
                   key={rowIndex}
-                  className='bg-white cursor-pointer'
-                  onClick={() => handleRowClick(row)}
+                  className='bg-white'
                 >
                   {columns?.map(col => (
                     <td
                       key={col?.key}
-                      className={`px-4 py-3  ${
-                        rowIndex % 2 === 0 ? 'bg-white' : 'bg-[#F7F7F9]'
-                      } whitespace-nowrap border-b border-gray-200 ${
-                        textCenter ? 'text-center' : 'text-start'
-                      }`}
+                      className={`px-4 py-3  ${rowIndex % 2 === 0 ? 'bg-white' : 'bg-[#F7F7F9]'
+                        } whitespace-nowrap border-b border-gray-200 ${textCenter ? 'text-center' : 'text-start'
+                        }`}
                     >
                       {col?.key === 'action' ? (
                         <>{ActionCell(row, col, onClick)}</>
@@ -215,11 +231,10 @@ const Table = ({
             <button
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
-              className={`mx-2 flex size-[32px] items-center  justify-center border border-solid border-[#DFE3E8] ${
-                currentPage === 1
-                  ? 'bg-[#919EAB] text-white opacity-[50%]'
-                  : 'bg-none text-gray-400'
-              } rounded-[4px]`}
+              className={`mx-2 flex size-[32px] items-center  justify-center border border-solid border-[#DFE3E8] ${currentPage === 1
+                ? 'bg-[#919EAB] text-white opacity-[50%]'
+                : 'bg-none text-gray-400'
+                } rounded-[4px]`}
             >
               <SVG icon={prev} />
             </button>
@@ -231,9 +246,8 @@ const Table = ({
                     paginate(page);
                   }
                 }}
-                className={`mx-2 flex size-[32px]  ${page > 1000 ? 'w-[40px] ' : 'size-[32px]'} items-center justify-center overflow-hidden border border-solid text-[14px] font-[700] ${
-                  currentPage === page ? 'border-primary' : 'border-[#DFE3E8]'
-                } rounded-[4px]`}
+                className={`mx-2 flex size-[32px]  ${page > 1000 ? 'w-[40px] ' : 'size-[32px]'} items-center justify-center overflow-hidden border border-solid text-[14px] font-[700] ${currentPage === page ? 'border-primary' : 'border-[#DFE3E8]'
+                  } rounded-[4px]`}
               >
                 {page}
               </button>
@@ -241,11 +255,10 @@ const Table = ({
             <button
               onClick={() => paginate(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className={`mx-2 flex size-[32px] items-center justify-center border border-solid border-[#DFE3E8] ${
-                currentPage === totalPages
-                  ? 'bg-[#919EAB] text-white opacity-[50%]'
-                  : 'bg-none text-gray-400'
-              } rounded-[4px]`}
+              className={`mx-2 flex size-[32px] items-center justify-center border border-solid border-[#DFE3E8] ${currentPage === totalPages
+                ? 'bg-[#919EAB] text-white opacity-[50%]'
+                : 'bg-none text-gray-400'
+                } rounded-[4px]`}
             >
               <SVG icon={next} />
             </button>
@@ -253,6 +266,29 @@ const Table = ({
         ) : null}
       </div>
     </section>
+  );
+};
+
+const EmailReminderButton = ({ row, onClick }) => {
+  const isExpired = row.expriyStatus?.toLowerCase().includes('expired');
+  const isSent = row.action === 'Email Sent';
+
+  if (isSent) {
+    return (
+      <div className="text-gray-500 flex items-center">
+        <span className="mr-2">✓</span>
+        Email Sent
+      </div>
+    );
+  }
+
+  return (
+    <Button
+      title="Email Reminder"
+      variant="outline"
+      onClick={() => onClick(row)}
+      disabled={!isExpired}
+    />
   );
 };
 

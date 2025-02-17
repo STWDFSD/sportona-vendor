@@ -116,6 +116,7 @@ const Services = () => {
       const fetchData = async () => {
         const resp = await fetchServicesByVendor(vendorRef);
         if (resp?.success) {
+          console.log('resp', resp);
           const fetchedServices = resp?.data;
 
           const servicesWithIcons = fetchedServices?.length

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { collection, getDoc, getDocs, query, where } from 'firebase/firestore';
 import { db } from 'firebaseConfig';
+import { de } from 'date-fns/locale';
 
 const useOffers = () => {
   const [loading, setLoading] = useState(false);
@@ -50,15 +51,15 @@ const useOffers = () => {
               : null,
             batchDetails: batchDoc?.exists()
               ? {
-                  id: batchDoc.id,
-                  ...batchDoc.data(),
-                }
+                id: batchDoc.id,
+                ...batchDoc.data(),
+              }
               : null,
             activtyDetails: activityDoc?.exists()
               ? {
-                  id: activityDoc.id,
-                  ...activityDoc.data(),
-                }
+                id: activityDoc.id,
+                ...activityDoc.data(),
+              }
               : null,
           };
         })
@@ -99,15 +100,15 @@ const useOffers = () => {
               : null,
             batchDetails: batchDoc?.exists()
               ? {
-                  id: batchDoc.id,
-                  ...batchDoc.data(),
-                }
+                id: batchDoc.id,
+                ...batchDoc.data(),
+              }
               : null,
             activtyDetails: activityDoc?.exists()
               ? {
-                  id: activityDoc.id,
-                  ...activityDoc.data(),
-                }
+                id: activityDoc.id,
+                ...activityDoc.data(),
+              }
               : null,
           };
         })

@@ -160,13 +160,13 @@ const Sales = () => {
           path='/sales/customer-offers'
           total={totalCustomOffers}
         />
-        {/* <PageSection
+        <PageSection
           title='Special Requirements'
           desc='See new special requirements requested by customers'
           icon={requirement}
           path='/sales/special-requirements'
           total={''}
-        /> */}
+        />
         <PageSection
           title='Expiring Subscriptions'
           desc='List of subscription that is about to be expired.'

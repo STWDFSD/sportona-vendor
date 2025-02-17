@@ -9,43 +9,37 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import emailIcon from '../../../media/svgs/email.svg';
 import keyIcon from '../../../media/svgs/Key.svg';
 import passwordIcon from '../../../media/svgs/password.svg';
-import useAuth from 'hooks/useAuth';
-import * as yup from 'yup';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import toast from 'react-hot-toast';
+import * as yup from 'yup';
+
+// Setting up Firebase Functions
 const functions = getFunctions();
 const sendOtp = httpsCallable(functions, 'sendOtp');
 const verifyOtp = httpsCallable(functions, 'verifyOtp');
 const resetPasswordWithOtp = httpsCallable(functions, 'resetPasswordWithOtp');
 
+// Validation Schemas
 const requestOtpSchema = yup.object().shape({
   email: yup.string().email('Invalid email').required('Email is required'),
 });
 
 const verifyOtpSchema = yup.object().shape({
-  otp: yup
-    .string()
-    .length(6, 'OTP must be 6 digits')
-    .required('OTP is required'),
+  otp: yup.string().length(6, 'OTP must be 6 digits').required('OTP is required'),
 });
 
 const resetPasswordSchema = yup.object().shape({
-  password: yup
-    .string()
-    .min(8, 'Password must be at least 8 characters')
-    .required('Password is required'),
-  confirm: yup
-    .string()
-    .oneOf([yup.ref('password')], 'Passwords must match')
-    .required('Confirm password is required'),
+  password: yup.string().min(8, 'Password must be at least 8 characters').required('Password is required'),
+  confirm: yup.string().oneOf([yup.ref('password')], 'Passwords must match').required('Confirm password is required'),
 });
+
 const ForgotPasswordPage = () => {
   const navigate = useNavigate();
-  const { registerUser } = useAuth();
   const [loader, setLoader] = useState(false);
   const [otpEnabled, setOtpEnabled] = useState(false);
   const [passwordEnabled, setPasswordEnabled] = useState(false);
 
+  // Form setups
   const requestOtpForm = useForm({
     resolver: yupResolver(requestOtpSchema),
     defaultValues: { email: '' },
@@ -61,12 +55,13 @@ const ForgotPasswordPage = () => {
     defaultValues: { password: '', confirm: '' },
   });
 
-  const handleRequestOtp = async data => {
+  // Request OTP
+  const handleRequestOtp = async (data) => {
     setLoader(true);
     try {
       await sendOtp({ email: data.email });
       toast.success('OTP sent successfully!');
-      setOtpEnabled(true);
+      setOtpEnabled(true); // Enable OTP verification
     } catch (error) {
       toast.error(error.message || 'Failed to send OTP. Please try again.');
     } finally {
@@ -74,30 +69,31 @@ const ForgotPasswordPage = () => {
     }
   };
 
-  const handleVerifyOtp = async data => {
+  // Verify OTP
+  const handleVerifyOtp = async (data) => {
     setLoader(true);
     try {
       const email = requestOtpForm.watch('email');
       if (!email) {
-        toast.success('Email is required to verify OTP.');
+        toast.error('Email is required to verify OTP.');
         return;
       }
       const result = await verifyOtp({ email, otp: data.otp });
       if (result.data.success) {
         toast.success('OTP Verified Successfully!');
-        setPasswordEnabled(true);
+        setPasswordEnabled(true); // Enable password reset
       } else {
-        toast.success('OTP Verification Failed. Please try again.');
+        toast.error('OTP Verification Failed. Please try again.');
       }
     } catch (error) {
-      console.error('Error verifying OTP:', error);
-      toast.success(error.message || 'An error occurred while verifying OTP.');
+      toast.error(error.message || 'An error occurred while verifying OTP.');
     } finally {
       setLoader(false);
     }
   };
 
-  const handleResetPassword = async data => {
+  // Reset Password
+  const handleResetPassword = async (data) => {
     setLoader(true);
     try {
       const email = requestOtpForm.watch('email');
@@ -108,9 +104,8 @@ const ForgotPasswordPage = () => {
 
       await resetPasswordWithOtp({ email, newPassword: data.password });
       toast.success('Password reset successfully!');
-      navigate('/login');
+      navigate('/login'); // Redirect to login after successful reset
     } catch (error) {
-      console.error('Error resetting password:', error);
       toast.error(error.message || 'Failed to reset password.');
     } finally {
       setLoader(false);
@@ -127,10 +122,7 @@ const ForgotPasswordPage = () => {
         </p>
       </div>
       <div className='bg-white shadow-sm p-6 rounded-[16px] mt-4'>
-        <form
-          onSubmit={requestOtpForm.handleSubmit(handleRequestOtp)}
-          className='md:w-[500px] xs:w-full sm:w-full'
-        >
+        <form onSubmit={requestOtpForm.handleSubmit(handleRequestOtp)} className='md:w-[500px] xs:w-full sm:w-full'>
           <div className='relative'>
             <button
               className='absolute right-2 top-[33px] border-l h-10 px-3 border-[#EBEBEF] text-sm text-[#121217]'
@@ -151,10 +143,7 @@ const ForgotPasswordPage = () => {
           </div>
         </form>
 
-        <form
-          onSubmit={verifyOtpForm.handleSubmit(handleVerifyOtp)}
-          className='md:w-[500px] xs:w-full sm:w-full'
-        >
+        <form onSubmit={verifyOtpForm.handleSubmit(handleVerifyOtp)} className='md:w-[500px] xs:w-full sm:w-full'>
           <div className='relative'>
             <button
               className='absolute right-2 top-[33px] border-l h-10 px-3 border-[#EBEBEF] text-sm text-[#121217]'
@@ -177,10 +166,7 @@ const ForgotPasswordPage = () => {
           </div>
         </form>
 
-        <form
-          onSubmit={resetPasswordForm.handleSubmit(handleResetPassword)}
-          className='md:w-[500px] xs:w-full sm:w-full'
-        >
+        <form onSubmit={resetPasswordForm.handleSubmit(handleResetPassword)} className='md:w-[500px] xs:w-full sm:w-full'>
           <InputField
             type='password'
             name='password'

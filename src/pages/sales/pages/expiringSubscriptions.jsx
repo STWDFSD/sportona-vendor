@@ -9,6 +9,9 @@ import sort from 'media/svgs/sort.svg';
 import filter from 'media/svgs/filter.svg';
 import { httpsCallable } from 'firebase/functions';
 import { functions } from 'firebaseConfig';
+import ProfileInitials from 'components/profileInitials';
+import SportBadge from 'components/sportBadge';
+import StatusBadge from 'components/statusBadge';
 
 const columns = [
   { title: 'No', dataIndex: 'no', key: 'no' },
@@ -16,19 +19,23 @@ const columns = [
     title: 'Profile',
     dataIndex: 'profile',
     key: 'profile',
-    renderCell: (val, row) => renderProfile(val, row),
+    renderCell: (val, row) => <ProfileInitials name={row.name} />,
   },
   { title: 'Name', dataIndex: 'name', key: 'name' },
   {
     title: 'Subscription In',
     dataIndex: 'subscriptionIn',
     key: 'subscriptionIn',
-    renderCell: (val, row) => renderCustomCell(val, row),
+    renderCell: (val) => <SportBadge sport={val} />,
   },
-
   { title: 'Batch', dataIndex: 'batch', key: 'batch' },
-  { title: 'UserName', dataIndex: 'username', key: 'username' },
-  { title: 'Expiry Status', dataIndex: 'expriyStatus', key: 'expriyStatus' },
+  { title: 'Username', dataIndex: 'username', key: 'username' },
+  {
+    title: 'Expiry Status',
+    dataIndex: 'expriyStatus',
+    key: 'expriyStatus',
+    renderCell: (val) => <StatusBadge status={val} />,
+  },
   { title: 'Action', dataIndex: 'action', key: 'action', type: 'subscription' },
 ];
 
@@ -63,6 +70,28 @@ const GoBack = () => {
   );
 };
 
+const SortIcon = () => (
+  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M3 4h13M3 8h9M3 12h5m8 0l-4-4m4 4l-4 4"
+    />
+  </svg>
+);
+
+const FilterIcon = () => (
+  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+    />
+  </svg>
+);
+
 const ExpireSubscriptions = () => {
   const location = useLocation();
   const { subscriptionIds } = location.state || { subscriptionIds: [] };
@@ -88,26 +117,33 @@ const ExpireSubscriptions = () => {
     }
   }, [subscriptionIds]);
 
+  const handleRowClick = (row) => {
+    // Handle row click if needed
+    console.log('Row clicked:', row);
+  };
+
   return (
     <div>
       <GoBack />
       <div className='mt-4 p-2'>
         <div className='my-2 flex justify-between items-center px-2'>
           <div className='flex items-center space-x-2'>
-            <p className='font-medium text-primary '>Subscriptions</p>
+            <p className='font-medium text-primary'>Subscriptions</p>
           </div>
-          <div className='flex items-center space-x-2'>
+          <div className='flex items-center gap-2'>
             <Button
               title='Sort'
-              variant={'outline'}
-              icon={<SVG icon={sort} />}
+              variant='tool'
+              icon={<SortIcon />}
               iconRight
+              className="!px-3 !py-1.5 !gap-1"
             />
             <Button
               title='Filter'
+              variant='tool'
+              icon={<FilterIcon />}
               iconRight
-              variant={'outline'}
-              icon={<SVG icon={filter} />}
+              className="!px-3 !py-1.5 !gap-1"
             />
           </div>
         </div>
@@ -116,6 +152,7 @@ const ExpireSubscriptions = () => {
           data={subscriptionData}
           search={false}
           onClick={SendEmail}
+          handleRowClick={handleRowClick}
         />
       </div>
     </div>
