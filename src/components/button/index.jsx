@@ -10,6 +10,9 @@ const Button = ({
   className = ''
 }) => {
   const baseClasses = 'inline-flex items-center rounded-md transition-colors';
+  const paddingClasses = icon
+    ? `${iconRight ? 'pl-2 pr-1' : 'pl-1 pr-2'} py-1`
+    : 'px-2 py-1';
   const variantClasses = {
     primary: 'bg-primary text-white hover:bg-primary-dark',
     outline: 'border border-gray-300 text-gray-600 hover:bg-gray-50',
@@ -19,7 +22,7 @@ const Button = ({
 
   return (
     <button
-      className={`${baseClasses} ${variantClasses[variant]} ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+      className={`${baseClasses} ${paddingClasses} ${variantClasses[variant]} ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
         }`}
       onClick={onClick}
       disabled={disabled}

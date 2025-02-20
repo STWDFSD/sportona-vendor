@@ -18,23 +18,33 @@ const SearchBar = ({
   onSubmit,
   ...props
 }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (onSubmit) {
+      onSubmit(e);
+    }
+  };
+
   return (
-    <form onSubmit={onSubmit} className="relative mb-4">
+    <form onSubmit={handleSubmit} className="relative mb-4">
       <div className="relative flex items-center">
-        <SVG
-          icon={searchIcon}
-          className="absolute left-3 h-5 w-5 text-gray-400"
-        />
+        {!value && (
+          <SVG
+            icon={searchIcon}
+            className="absolute left-3 h-5 w-5 text-gray-400"
+          />
+        )}
         <input
           type={type}
+          name={name}
           value={value}
           disabled={disable}
           onChange={onChange}
           placeholder={placeholder}
           maxLength={40}
-          style={{ backgroundColor: 'transparent' }}
-          className={`w-full rounded-lg border border-gray-300 py-2 pl-10 pr-10 focus:border-primary focus:outline-none ${value ? 'pl-0' : 'pl-2'
-            } py-2`}
+          style={{ backgroundColor: 'transparent', height }}
+          className={`w-full rounded-lg border border-gray-300 py-2 ${value ? 'px-3' : 'pl-10 pr-3'
+            } focus:border-primary focus:outline-none ${className}`}
           {...props}
         />
         {value && (

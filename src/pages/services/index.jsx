@@ -8,7 +8,7 @@ import badminton from 'media/svgs/badminton.svg';
 import golf from 'media/svgs/golf.svg';
 import InfoSection from './components/infoSection';
 import person from 'media/svgs/person.svg';
-import revenue from 'media/svgs/revenue.svg';
+import revenues from 'media/svgs/revenue.svg';
 import clock from 'media/svgs/clock.svg';
 import bidsMoney from 'media/svgs/giving-money.svg';
 import SVG from 'components/renderSvg';
@@ -336,7 +336,7 @@ const TopSection = ({ activeTab, serviceRef, currentVenderData }) => {
             <InfoSection
               count={`$ ${revenue}`}
               text={'Revenue so far'}
-              icon={revenue}
+              icon={revenues}
             />
             <InfoSection
               text={'Bids so far'}
