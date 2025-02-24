@@ -26,7 +26,7 @@ const SearchBar = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="relative mb-4">
+    <form onSubmit={handleSubmit} className="relative">
       <div className="relative flex items-center">
         {!value && (
           <SVG

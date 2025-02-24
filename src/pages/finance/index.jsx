@@ -1,5 +1,7 @@
 import BarChart from 'components/chart/barchart';
 import LineChart from 'components/chart/linechart';
+import SelectButton from 'components/button/selectButton';
+import MonthNavigator from 'components/monthNavigation/monthnavigation';
 import React, { useState } from 'react';
 
 import SVG from 'components/renderSvg';
@@ -7,8 +9,11 @@ import SVG from 'components/renderSvg';
 import first from '../../media/svgs/finance/first.svg';
 import last from '../../media/svgs/finance/last.svg';
 
+  const options = ['Daily', 'Monthly', 'Yearly'];
+
 const Finance = () => {
   const [period, setPeriod] = useState('Monthly');
+  const [selectedIndex, setSelectedIndex] = useState(1);
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const handlePeriodChange = (e) => {
@@ -43,19 +48,13 @@ const Finance = () => {
   return (
     <div className='p-2'>
       <div className='flex justify-between items-center w-[99%] mb-5'>
-        <div className='flex items-center gap-2'>
-          <select
-            className='border rounded-md px-3 py-1'
-            value={period}
-            onChange={handlePeriodChange}
-          >
-            <option>Monthly</option>
-            <option>Weekly</option>
-            <option>Yearly</option>
-          </select>
-          <button className='p-2' onClick={handlePrevMonth}><span>←</span></button>
-          <span>{formatDate(currentDate)}</span>
-          <button className='p-2' onClick={handleNextMonth}><span>→</span></button>
+        <div className='flex items-center space-x-6'>
+          <SelectButton
+            options={options}
+            selectedIndex={selectedIndex}
+            setSelectedIndex={setSelectedIndex}
+          />
+          <MonthNavigator />
         </div>
         <button
           className='flex items-center gap-2 border rounded-md px-3 py-1 ml-auto'

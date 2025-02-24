@@ -65,7 +65,7 @@ const NewChallenge = () => {
           <Select name='name' height='40px' className='w-full'></Select>
         </div>
       )}
-      <div className='flex   flex-col space-y-3'>
+      <div className='flex flex-col space-y-3'>
         <LeftInfo
           title='Date'
           subtitle='Scale line subtract content group effect.'

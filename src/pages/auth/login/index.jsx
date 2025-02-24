@@ -99,7 +99,7 @@ const LoginPage = () => {
 
         <Button
           title='Login'
-          variant='success'
+          variant='primary'
           className='w-full mt-5'
           disabled={loader}
         />

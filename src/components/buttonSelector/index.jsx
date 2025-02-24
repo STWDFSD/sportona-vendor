@@ -1,5 +1,5 @@
 import SVG from 'components/renderSvg';
-import crownIcon from '../../media/svgs/crownDown.svg';
+import crownIcon from 'media/svgs/crownDown.svg';
 import { useRef, cloneElement, isValidElement } from 'react';
 
 const ButtonSelector = ({ icon, value, children, onClick = () => {} }) => {
@@ -28,7 +28,7 @@ const ButtonSelector = ({ icon, value, children, onClick = () => {} }) => {
       role='button' // Make the div act like a button
       onClick={handleButtonClick} // Trigger time picker on click
     >
-      <SVG icon={icon} />
+      {icon && <SVG icon={icon} />}
       {value}
       {childrenWithRef}
       <SVG icon={crownIcon} />

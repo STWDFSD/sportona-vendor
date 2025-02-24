@@ -1,6 +1,6 @@
 import Button from 'components/button';
 import React, { useState } from 'react';
-import MonthNavigator from './monthnavigation';
+import MonthNavigator from 'components/monthNavigation/monthnavigation';
 import service from 'media/svgs/servicesicon.svg';
 import crowed from 'media/svgs/crowd.svg';
 import SVG from 'components/renderSvg';
