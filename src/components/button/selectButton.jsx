@@ -23,27 +23,23 @@ const SelectButton = ({
 
   return (
     <button
-      className='flex items-center justify-between relative border border-gray-300 text-gray-700 rounded-lg w-28 px-2 py-1'
+      className='flex relative items-center justify-between border border-gray-300 text-gray-700 rounded-lg w-28 px-2 py-1'
       style={{ width: width }} // Set fixed width
     >
       {/* Text Display */}
-      <span className='text-start flex-grow text-primary font-medium px-2'>
+      <span className='text-start flex-grow text-primary font-medium mx-2 overflow-hidden'>
         {options[selectedIndex]}
       </span>
 
-      <span
-        onClick={handleDecrement}
-        className='cursor-pointer absolute top-[7px] right-2'
-      >
-        <FaCaretDown size={12} />
-      </span>
+      <div className='flex flex-col content-around'>
+        <span onClick={handleDecrement} className='cursor-pointer'>
+          <FaCaretDown size={12} />
+        </span>
 
-      <span
-        onClick={handleIncrement}
-        className='cursor-pointer absolute top-[16px]  right-2'
-      >
-        <FaCaretUp size={12} />
-      </span>
+        <span onClick={handleIncrement} className='cursor-pointer'>
+          <FaCaretUp size={12} />
+        </span>
+      </div>
     </button>
   );
 };

@@ -37,27 +37,33 @@ const ChallengeExternalCard = ({
         </div>
       </div>
       <div className='py-4 flex items-center space-x-3'>
-        <div className='p-1 bg-[#F7F7F8] rounded-lg'>
+        <div className='px-2 py-1 bg-[#F7F7F8] rounded-lg'>
           {internalOrExternal || 'External'}
         </div>
-        <div className='bg-[#FFF9EB] p-1 rounded-lg'>
+        <div className='px-2 py-1 bg-[#FFF9EB] rounded-lg'>
           {service || 'Football'}
         </div>
-        <div className='bg-[#FEECFB] p-1 rounded-lg'>{level || 'Legend'}</div>
+        <div className='px-2 py-1 bg-[#FEECFB] rounded-lg'>
+          {level || 'Legend'}
+        </div>
       </div>
       <div className='my-2 flex  space-y-4 flex-col'>
         <div className='flex space-x-3 items-center'>
-          <SlLocationPin className='size-4' color='#7047EB' />
+          <SlLocationPin className='size-5' color='#7047EB' />
           <p>{location || '1901 Thornridge Cir. Shiloh, Hawaii 81063'}</p>
         </div>
-        <div className='flex items-center space-x-3'>
-          <CiCalendar />
-          <p>{date || '21 june to 22 june'}</p>
-          <BsClock className='size-4' color='#7047EB' />
-          <p>{time || '6pm - 7pm'}</p>
+        <div className='flex items-center space-x-6'>
+          <div className='flex items-center space-x-3'>
+            <CiCalendar className='size-6' color='#7047EB' />
+            <p>{date || '21 june to 22 june'}</p>
+          </div>
+          <div className='flex items-center space-x-3'>
+            <BsClock className='size-5' color='#7047EB' />
+            <p>{time || '6pm - 7pm'}</p>
+          </div>
         </div>
         <div className='flex items-center space-x-3'>
-          <SVG icon={participantIcon} />
+          <SVG icon={participantIcon} className='size-7' />
           <p>{participant || '05 Participants'}</p>
         </div>
       </div>

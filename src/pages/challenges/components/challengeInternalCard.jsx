@@ -27,27 +27,29 @@ const ChallengeInternalCard = ({
     <div className='border border-1 border-solid rounded-lg p-4'>
       <AvatarUi />
       <div className='py-4 flex items-center space-x-3'>
-        <div className='p-1 bg-[#F7F7F8] rounded-lg'>
+        <div className='px-2 py-1 bg-[#F7F7F8] rounded-lg'>
           {internalOrExternal || 'External'}
         </div>
-        <div className='bg-[#FFF9EB] p-1 rounded-lg'>
+        <div className='px-2 py-1 bg-[#FFF9EB] rounded-lg'>
           {service || 'Football'}
         </div>
-        <div className='bg-[#FEECFB] p-1 rounded-lg'>{level || 'Legend'}</div>
+        <div className='px-2 py-1 bg-[#FEECFB] rounded-lg'>
+          {level || 'Legend'}
+        </div>
       </div>
       <div className='my-2 flex  space-y-4 flex-col'>
         <div className='flex space-x-3 items-center'>
-          <SlLocationPin className='size-4' color='#7047EB' />
+          <SlLocationPin className='size-5' color='#7047EB' />
           <p>{location || '1901 Thornridge Cir. Shiloh, Hawaii 81063'}</p>
         </div>
         <div className='flex items-center space-x-3'>
-          <CiCalendar />
+          <CiCalendar className='size-6' color='#7047EB' />
           <p>{date || '21 june to 22 june'}</p>
-          <BsClock className='size-4' color='#7047EB' />
+          <BsClock className='size-5' color='#7047EB' />
           <p>{time || '6pm - 7pm'}</p>
         </div>
         <div className='flex items-center space-x-3'>
-          <SVG icon={participantIcon} />
+          <SVG icon={participantIcon} className='size-6' color='#7047EB' />
           <p>{participant || '05 Participants'}</p>
         </div>
       </div>
@@ -102,51 +104,47 @@ const AvatarUi = () => {
       {/* Team A */}
       <div className='relative flex flex-1'>
         {/* First Avatar */}
-        <div className='w-8 h-8 rounded-full border-4 border-white bg-gray-300'>
-          <div className='w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center text-xl font-bold'>
+        <div className='w-12 h-12 rounded-full border-4 border-white bg-gray-300'>
+          <div className='w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center text-xl font-bold'>
             B
           </div>
         </div>
         {/* Second Avatar */}
-        <div className='w-8 h-8 rounded-full border-4 border-white bg-gray-300 absolute left-8 top-0'>
-          <div className='w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center text-xl font-bold'>
+        <div className='w-12 h-12 rounded-full border-4 border-white bg-gray-300 absolute left-8 top-0'>
+          <div className='w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center text-xl font-bold'>
             B
           </div>
         </div>
         {/* Third Avatar */}
-        <div className='w-8 h-8 rounded-full border-4 border-white bg-gray-300 absolute left-16 top-0'>
-          <div className='w-8 h-8 rounded-full bg-gray-700 opacity-50 text-white flex items-center justify-center text-xl font-bold'></div>
-        </div>
-        {/* Remaining Avatar Count */}
-        <div className='w-4 h-4 rounded-full  absolute left-[72px] top-[10px] flex items-center justify-center text-white font-bold'>
-          +2
+        <div className='w-12 h-12 rounded-full border-4 border-white bg-gray-300 absolute left-16 top-0'>
+          <div className='w-12 h-12 rounded-full bg-gray-700 opacity-50 text-white flex items-center justify-center text-xl font-bold'>
+            +2
+          </div>
         </div>
       </div>
 
       {/* VS Text */}
-      <div className='text-[16px] font-bold text-primary '>VS</div>
+      <div className='text-[16px] font-bold text-primary'>VS</div>
 
       {/* Team B */}
       <div className='relative flex flex-1'>
         {/* First Avatar */}
-        <div className='w-8 h-8 rounded-full border-4 border-white bg-gray-300'>
-          <div className='w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center text-xl font-bold'>
+        <div className='w-12 h-12 rounded-full border-4 border-white bg-gray-300'>
+          <div className='w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center text-xl font-bold'>
             B
           </div>
         </div>
         {/* Second Avatar */}
-        <div className='w-8 h-8 rounded-full border-4 border-white bg-gray-300 absolute left-8 top-0'>
-          <div className='w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center text-xl font-bold'>
+        <div className='w-12 h-12 rounded-full border-4 border-white bg-gray-300 absolute left-8 top-0'>
+          <div className='w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center text-xl font-bold'>
             B
           </div>
         </div>
         {/* Third Avatar */}
-        <div className='w-8 h-8 rounded-full border-4 border-white bg-gray-300 absolute left-16 top-0'>
-          <div className='w-8 h-8 rounded-full bg-gray-700 opacity-50 text-white flex items-center justify-center text-xl font-bold'></div>
-        </div>
-        {/* Remaining Avatar Count */}
-        <div className='w-4 h-4 rounded-full  absolute left-[72px] top-[10px] flex items-center justify-center text-white font-bold'>
-          +2
+        <div className='w-12 h-12 rounded-full border-4 border-white bg-gray-300 absolute left-16 top-0'>
+          <div className='w-12 h-12 rounded-full bg-gray-700 opacity-50 text-white flex items-center justify-center text-xl font-bold'>
+            +2
+          </div>
         </div>
       </div>
     </div>

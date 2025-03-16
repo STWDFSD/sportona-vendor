@@ -4,6 +4,10 @@ import forward from 'media/svgs/forward.svg';
 import downward from 'media/svgs/downward.svg';
 import SVG from 'components/renderSvg';
 import Button from 'components/button';
+import participantIcon from 'media/svgs/crowd.svg';
+import { SlLocationPin } from 'react-icons/sl';
+import { BsClock } from 'react-icons/bs';
+import { CiCalendar } from 'react-icons/ci';
 
 const challengesData = [
   {
@@ -316,7 +320,7 @@ const ChallengesRecieved = () => {
   return (
     <div className='flex h-[80vh] p-3'>
       {/* Left Side: Challenges List */}
-      <div className='w-1/4 bg-white p-4 overflow-y-auto'>
+      <div className='w-1/4 p-4 overflow-y-auto'>
         <h2 className='font-medium text-[16px] mb-4'>Recent</h2>
         {challengesData
           .filter(challenge => challenge.type === 'recent')
@@ -324,10 +328,7 @@ const ChallengesRecieved = () => {
             <div
               key={challenge.id}
               onClick={() => setSelectedChallenge(challenge)}
-              className={`flex items-center p-3 mb-4 ${selectedChallenge?.id === challenge?.id
-                ? 'bg-[#EBEBEF]'
-                : 'bg-white'
-                } rounded-[10px] cursor-pointer`}
+              className={`flex items-center p-3 mb-4 ${selectedChallenge?.id === challenge?.id && 'bg-[#EBEBEF]'} rounded-[10px] cursor-pointer`}
             >
               <img
                 src={challenge.avatar}
@@ -348,10 +349,11 @@ const ChallengesRecieved = () => {
             <div
               key={challenge.id}
               onClick={() => setSelectedChallenge(challenge)}
-              className={`flex items-center p-3 mb-4 ${selectedChallenge?.id === challenge?.id
-                ? 'bg-[#EBEBEF]'
-                : 'bg-white'
-                } rounded-[10px] cursor-pointer`}
+              className={`flex items-center p-3 mb-4 ${
+                selectedChallenge?.id === challenge?.id
+                  ? 'bg-[#EBEBEF]'
+                  : 'bg-white'
+              } rounded-[10px] cursor-pointer`}
             >
               <img
                 src={challenge.avatar}
@@ -369,40 +371,47 @@ const ChallengesRecieved = () => {
       {/* Right Side: Challenge Details */}
       <div className='w-3/4 p-2 border border-solid border-1 rounded-[8px] overflow-auto max-h-[95vh]'>
         {selectedChallenge ? (
-          <div className='bg-white p-6'>
+          <div className='p-6 space-y-6'>
             {/* <h2 className='font-bold text-2xl mb-4'>
               {selectedChallenge.description}
             </h2> */}
             <div className='flex items-center space-x-4 flex-wrap'>
-              <div className='mb-4 bg-gray-100 rounded-[4px] p-1'>
+              <div className='bg-gray-100 rounded-[4px] py-1 px-2'>
                 <span className=''>{selectedChallenge.gameType}</span>
               </div>
-              <div className='mb-4 bg-teal-100 rounded-[4px] p-1'>
+              <div className='bg-teal-100 rounded-[4px] py-1 px-2'>
                 <span className=''>{selectedChallenge.service}</span>
               </div>
-              <div className='mb-4 bg-orange-100 rounded-[4px] p-1'>
+              <div className='bg-orange-100 rounded-[4px] py-1 px-2'>
                 <span className=''>{selectedChallenge.level}</span>
               </div>
             </div>
-            <div className='flex items-center space-x-4 flex-wrap'>
-              <div className='mb-4 '>
+            <div className='flex items-center space-x-4 pb-6 flex-wrap border-b-2'>
+              <div className='flex items-center space-x-2'>
+                <SlLocationPin className='size-5' color='#7047EB' />
                 <span className='text-primary font-medium'>
                   {selectedChallenge.location}
                 </span>
               </div>
-              <div className='mb-4 '>
+              <div className='flex items-center space-x-2'>
+                <BsClock className='size-5' color='#7047EB' />
                 <span className='text-primary font-medium'>
                   {selectedChallenge.gamedate}
                 </span>
               </div>
-              <div className='mb-4 '>
+              <div className='flex items-center space-x-2'>
+                <CiCalendar className='size-7' color='#7047EB' />
                 <span className='text-primary font-medium'>
                   {selectedChallenge.time}
                 </span>
               </div>
+              <div className='flex items-center space-x-2'>
+                <SVG icon={participantIcon} className='size-7' />
+                <p>{selectedChallenge.participant || '05 Participants'}</p>
+              </div>
             </div>
 
-            <div className='mb-6'>
+            <div className=''>
               <h3 className='text-secondary text-16px[] mb-2'>
                 Opponents Participants
               </h3>
@@ -431,8 +440,7 @@ const ChallengesRecieved = () => {
                 )}
               </ul>
             </div>
-            <hr />
-            <div className='mb-6 mt-3'>
+            <div className=''>
               <h3 className='text-secondary text-[16px] mb-2'>
                 Your Participants
               </h3>
@@ -458,7 +466,7 @@ export default ChallengesRecieved;
 const TeamParticipant = ({ title, subtitle }) => {
   const [expandedCategory, setExpandedCategory] = useState('Legends');
 
-  const toggleCategory = (category) => {
+  const toggleCategory = category => {
     if (expandedCategory === category) {
       setExpandedCategory(null);
     } else {
@@ -468,106 +476,104 @@ const TeamParticipant = ({ title, subtitle }) => {
 
   const categories = ['Legends', 'Champs', 'Pro', 'Rookies'];
 
-
   const users = [
     {
       id: 1,
       name: 'Alice',
       rating: 4.5,
       avatar: 'https://i.pravatar.cc/150?img=1',
-      category: 'Legends'
+      category: 'Legends',
     },
     {
       id: 2,
       name: 'Bob',
       rating: 3.8,
       avatar: 'https://i.pravatar.cc/150?img=2',
-      category: 'Legends'
+      category: 'Legends',
     },
     {
       id: 3,
       name: 'Charlie',
       rating: 4.9,
       avatar: 'https://i.pravatar.cc/150?img=3',
-      category: 'Legends'
+      category: 'Legends',
     },
     {
       id: 4,
       name: 'David',
       rating: 4.2,
       avatar: 'https://i.pravatar.cc/150?img=4',
-      category: 'Legends'
+      category: 'Legends',
     },
     {
       id: 5,
       name: 'Emma',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=5',
-      category: 'Legends'
+      category: 'Legends',
     },
     {
       id: 6,
       name: 'David',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=2',
-      category: 'Champs'
+      category: 'Champs',
     },
     {
       id: 7,
       name: 'Charlie',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=5',
-      category: 'Champs'
+      category: 'Champs',
     },
     {
       id: 8,
       name: 'Emma',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=1',
-      category: 'Pro'
+      category: 'Pro',
     },
     {
       id: 9,
       name: 'Charlie',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=2',
-      category: 'Pro'
+      category: 'Pro',
     },
     {
       id: 10,
       name: 'David',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=3',
-      category: 'Pro'
+      category: 'Pro',
     },
     {
       id: 11,
       name: 'Emma',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=2',
-      category: 'Rookies'
+      category: 'Rookies',
     },
     {
       id: 12,
       name: 'David',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=3',
-      category: 'Rookies'
+      category: 'Rookies',
     },
     {
       id: 13,
       name: 'Charlie',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=4',
-      category: 'Rookies'
+      category: 'Rookies',
     },
   ];
 
-
   return (
     <>
-      <div className="relative">
-        <SearchBar placeholder="Search participant..." />
+      <div className='relative'>
+        <SearchBar placeholder='Search participant...' />
       </div>
       <div className='flex flex-col space-y-2'>
         {categories.map(category => (
@@ -576,10 +582,10 @@ const TeamParticipant = ({ title, subtitle }) => {
               className='flex justify-between items-center px-4 py-3 bg-[#F7F7F8] rounded-lg cursor-pointer'
               onClick={() => toggleCategory(category)}
             >
-              <span className="font-medium">{category}</span>
+              <span className='font-medium'>{category}</span>
               <SVG
                 icon={expandedCategory === category ? downward : forward}
-                className="w-4 h-4"
+                className='w-4 h-4'
               />
             </div>
             {expandedCategory === category && (
@@ -587,7 +593,10 @@ const TeamParticipant = ({ title, subtitle }) => {
                 {users
                   .filter(user => user.category === category)
                   .map(user => (
-                    <div key={user.id} className='flex items-center space-x-3 p-2'>
+                    <div
+                      key={user.id}
+                      className='flex items-center space-x-3 p-2'
+                    >
                       <input
                         type='checkbox'
                         className='form-checkbox h-5 w-5 rounded border-gray-300'
@@ -599,7 +608,9 @@ const TeamParticipant = ({ title, subtitle }) => {
                       />
                       <div>
                         <p className='font-medium text-sm'>{user.name}</p>
-                        <p className='text-gray-500 text-sm'>{user.rating.toLocaleString()}</p>
+                        <p className='text-gray-500 text-sm'>
+                          {user.rating.toLocaleString()}
+                        </p>
                       </div>
                     </div>
                   ))}

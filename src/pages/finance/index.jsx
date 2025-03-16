@@ -9,14 +9,14 @@ import SVG from 'components/renderSvg';
 import first from '../../media/svgs/finance/first.svg';
 import last from '../../media/svgs/finance/last.svg';
 
-  const options = ['Daily', 'Monthly', 'Yearly'];
+const options = ['Daily', 'Monthly', 'Yearly'];
 
 const Finance = () => {
   const [period, setPeriod] = useState('Monthly');
   const [selectedIndex, setSelectedIndex] = useState(1);
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  const handlePeriodChange = (e) => {
+  const handlePeriodChange = e => {
     setPeriod(e.target.value);
   };
 
@@ -36,8 +36,11 @@ const Finance = () => {
     });
   };
 
-  const formatDate = (date) => {
-    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  const formatDate = date => {
+    return date.toLocaleDateString('en-US', {
+      month: 'short',
+      year: 'numeric',
+    });
   };
 
   const handleDownload = () => {
@@ -78,7 +81,9 @@ const Finance = () => {
                   <span className='text-sm text-gray-600'>Fixed cost</span>
                 </div>
                 <div className='flex items-center gap-2'>
-                  <span className='size-3 bg-purple-400 rounded-sm'><SVG icon={last} /></span>
+                  <span className='size-3 bg-purple-400 rounded-sm'>
+                    <SVG icon={last} />
+                  </span>
                   <span className='text-sm text-gray-600'>Variable cost</span>
                 </div>
               </div>
@@ -90,8 +95,12 @@ const Finance = () => {
               </div>
             </div>
             <p className='text-secondary'>vs £3,213.64 last period</p>
+            <LineChart />
+            <div className='flex justify-between'>
+              <p className='text-secondary'>1 Feb</p>
+              <p className='text-secondary'>Today</p>
+            </div>
           </div>
-          <LineChart />
         </div>
         <div className='col-span-1 border border-1 border-solid rounded-md'>
           <div className='p-4 flex flex-col'>
@@ -99,11 +108,15 @@ const Finance = () => {
               <p className='text-primary font-medium'>Total Revenue</p>
               <div className='flex gap-4'>
                 <div className='flex items-center gap-2'>
-                  <span className='size-3 bg-black rounded-sm'><SVG icon={first} /></span>
+                  <span className='size-3 bg-black rounded-sm'>
+                    <SVG icon={first} />
+                  </span>
                   <span className='text-sm text-gray-600'>Subscriptions</span>
                 </div>
                 <div className='flex items-center gap-2'>
-                  <span className='size-3 bg-purple-400 rounded-sm'><SVG icon={last} /></span>
+                  <span className='size-3 bg-purple-400 rounded-sm'>
+                    <SVG icon={last} />
+                  </span>
                   <span className='text-sm text-gray-600'>Walk-in</span>
                 </div>
               </div>
@@ -126,11 +139,15 @@ const Finance = () => {
               <p className='text-primary font-medium'>Cost Report</p>
               <div className='flex gap-4'>
                 <div className='flex items-center gap-2'>
-                  <span className='size-3 bg-black rounded-sm'><SVG icon={first} /></span>
+                  <span className='size-3 bg-black rounded-sm'>
+                    <SVG icon={first} />
+                  </span>
                   <span className='text-sm text-gray-600'>Chosen period</span>
                 </div>
                 <div className='flex items-center gap-2'>
-                  <span className='size-3 bg-purple-400 rounded-sm'><SVG icon={last} /></span>
+                  <span className='size-3 bg-purple-400 rounded-sm'>
+                    <SVG icon={last} />
+                  </span>
                   <span className='text-sm text-gray-600'>Last period</span>
                 </div>
               </div>
@@ -151,11 +168,15 @@ const Finance = () => {
               <p className='text-primary font-medium'>Profit</p>
               <div className='flex gap-4'>
                 <div className='flex items-center gap-2'>
-                  <span className='size-3 bg-black rounded-sm'><SVG icon={first} /></span>
+                  <span className='size-3 bg-black rounded-sm'>
+                    <SVG icon={first} />
+                  </span>
                   <span className='text-sm text-gray-600'>Chosen period</span>
                 </div>
                 <div className='flex items-center gap-2'>
-                  <span className='size-3 bg-purple-400 rounded-sm'><SVG icon={last} /></span>
+                  <span className='size-3 bg-purple-400 rounded-sm'>
+                    <SVG icon={last} />
+                  </span>
                   <span className='text-sm text-gray-600'>Last period</span>
                 </div>
               </div>
@@ -176,4 +197,3 @@ const Finance = () => {
 };
 
 export default Finance;
-

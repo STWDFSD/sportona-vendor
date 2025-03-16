@@ -16,7 +16,6 @@ const NewChallenge = () => {
   const [endDate, setEndDate] = useState(new Date());
   const [selectedLevel, setSelectedLevel] = useState('Legend');
 
-
   return (
     <div className='py-4 px-6 w-full flex flex-col space-y-8'>
       <div className='flex flex-col space-y-3'>
@@ -73,19 +72,19 @@ const NewChallenge = () => {
         <div className='flex items-center space-x-4'>
           <ButtonSelector>
             <input
-              type="date"
-              className="border-none bg-transparent outline-none text-center"
+              type='date'
+              className='border-none bg-transparent outline-none text-center'
               value={startDate.toISOString().split('T')[0]}
-              onChange={(e) => setStartDate(new Date(e.target.value))}
+              onChange={e => setStartDate(new Date(e.target.value))}
             />
           </ButtonSelector>
           <ButtonSelector>
             <input
-              type="date"
-              className="border-none bg-transparent outline-none text-center"
+              type='date'
+              className='border-none bg-transparent outline-none text-center'
               value={endDate.toISOString().split('T')[0]}
               min={startDate.toISOString().split('T')[0]}
-              onChange={(e) => setEndDate(new Date(e.target.value))}
+              onChange={e => setEndDate(new Date(e.target.value))}
             />
           </ButtonSelector>
         </div>
@@ -128,8 +127,9 @@ const NewChallenge = () => {
           {level.map(x => (
             <div
               key={x}
-              className={`cursor-pointer rounded-lg w-[120px] flex items-center justify-center p-2 ${selectedLevel === x ? 'bg-[#F7F7F8]' : 'bg-white'
-                }`}
+              className={`cursor-pointer rounded-lg w-[120px] flex items-center justify-center p-2 ${
+                selectedLevel === x ? 'bg-[#F7F7F8]' : 'bg-white'
+              }`}
               onClick={() => setSelectedLevel(x)}
             >
               <p className='text-center'>{x}</p>
@@ -193,7 +193,7 @@ export default NewChallenge;
 const TeamParticipant = ({ title, subtitle }) => {
   const [expandedCategory, setExpandedCategory] = useState('Legends');
 
-  const toggleCategory = (category) => {
+  const toggleCategory = category => {
     if (expandedCategory === category) {
       setExpandedCategory(null);
     } else {
@@ -203,107 +203,105 @@ const TeamParticipant = ({ title, subtitle }) => {
 
   const categories = ['Legends', 'Champs', 'Pro', 'Rookies'];
 
-
   const users = [
     {
       id: 1,
       name: 'Alice',
       rating: 4.5,
       avatar: 'https://i.pravatar.cc/150?img=1',
-      category: 'Legends'
+      category: 'Legends',
     },
     {
       id: 2,
       name: 'Bob',
       rating: 3.8,
       avatar: 'https://i.pravatar.cc/150?img=2',
-      category: 'Legends'
+      category: 'Legends',
     },
     {
       id: 3,
       name: 'Charlie',
       rating: 4.9,
       avatar: 'https://i.pravatar.cc/150?img=3',
-      category: 'Legends'
+      category: 'Legends',
     },
     {
       id: 4,
       name: 'David',
       rating: 4.2,
       avatar: 'https://i.pravatar.cc/150?img=4',
-      category: 'Legends'
+      category: 'Legends',
     },
     {
       id: 5,
       name: 'Emma',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=5',
-      category: 'Legends'
+      category: 'Legends',
     },
     {
       id: 6,
       name: 'David',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=2',
-      category: 'Champs'
+      category: 'Champs',
     },
     {
       id: 7,
       name: 'Charlie',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=5',
-      category: 'Champs'
+      category: 'Champs',
     },
     {
       id: 8,
       name: 'Emma',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=1',
-      category: 'Pro'
+      category: 'Pro',
     },
     {
       id: 9,
       name: 'Charlie',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=2',
-      category: 'Pro'
+      category: 'Pro',
     },
     {
       id: 10,
       name: 'David',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=3',
-      category: 'Pro'
+      category: 'Pro',
     },
     {
       id: 11,
       name: 'Emma',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=2',
-      category: 'Rookies'
+      category: 'Rookies',
     },
     {
       id: 12,
       name: 'David',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=3',
-      category: 'Rookies'
+      category: 'Rookies',
     },
     {
       id: 13,
       name: 'Charlie',
       rating: 4.7,
       avatar: 'https://i.pravatar.cc/150?img=4',
-      category: 'Rookies'
+      category: 'Rookies',
     },
   ];
-
 
   return (
     <>
       <LeftInfo title={title} subtitle={subtitle} />
-      <div className="relative">
-        <SearchBar placeholder="Search participant..." />
+      <div className='relative'>
+        <SearchBar placeholder='Search participant...' />
       </div>
       <div className='flex flex-col space-y-2'>
         {categories.map(category => (
@@ -312,10 +310,10 @@ const TeamParticipant = ({ title, subtitle }) => {
               className='flex justify-between items-center px-4 py-3 bg-[#F7F7F8] rounded-lg cursor-pointer'
               onClick={() => toggleCategory(category)}
             >
-              <span className="font-medium">{category}</span>
+              <span className='font-medium'>{category}</span>
               <SVG
                 icon={expandedCategory === category ? downward : forward}
-                className="w-4 h-4"
+                className='w-4 h-4'
               />
             </div>
             {expandedCategory === category && (
@@ -323,7 +321,10 @@ const TeamParticipant = ({ title, subtitle }) => {
                 {users
                   .filter(user => user.category === category)
                   .map(user => (
-                    <div key={user.id} className='flex items-center space-x-3 p-2'>
+                    <div
+                      key={user.id}
+                      className='flex items-center space-x-3 p-2'
+                    >
                       <input
                         type='checkbox'
                         className='form-checkbox h-5 w-5 rounded border-gray-300'
@@ -335,7 +336,9 @@ const TeamParticipant = ({ title, subtitle }) => {
                       />
                       <div>
                         <p className='font-medium text-sm'>{user.name}</p>
-                        <p className='text-gray-500 text-sm'>{user.rating.toLocaleString()}</p>
+                        <p className='text-gray-500 text-sm'>
+                          {user.rating.toLocaleString()}
+                        </p>
                       </div>
                     </div>
                   ))}

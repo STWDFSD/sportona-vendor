@@ -2,6 +2,7 @@ import SVG from 'components/renderSvg';
 import styles from './index.module.scss';
 
 const Tabs = ({ tabs, activeTab, setActiveTab }) => {
+  console.log('tabs = ', tabs, activeTab, setActiveTab);
   return (
     <div>
       {/* Tabs Navigation */}
